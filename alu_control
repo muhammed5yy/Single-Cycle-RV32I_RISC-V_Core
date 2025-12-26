@@ -1,0 +1,48 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 11.12.2025 11:42:15
+// Design Name: 
+// Module Name: alu_control
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module alu_control
+(
+input [31:0]next_inst,
+input [1:0]ALU_Op,
+output reg [3:0]opcode
+);
+
+wire [2:0]funct3 = next_inst[14:12];
+wire [6:0]funct7 = next_inst[31:25];
+
+always@(*) 
+begin
+if (ALU_Op == 2'b00)
+    begin
+    opcode <= 4'b0000;
+    end
+else if (ALU_Op == 2'b01)
+    begin
+    opcode <= 4'b0001;
+    end
+else
+
+end
+
+
+endmodule
