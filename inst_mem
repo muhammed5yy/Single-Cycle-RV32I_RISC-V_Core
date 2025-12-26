@@ -1,0 +1,49 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 01.12.2025 13:46:01
+// Design Name: 
+// Module Name: inst_mem
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module inst_mem(
+input clk,
+input enable_w,
+input [9:0]inst_addr,
+input [31:0]write_data,
+
+output reg [31:0] next_inst
+    );
+        
+    reg [31:0] inst_memory [1023:0];
+    
+    initial begin
+        $readmemh("instr_program.mem", inst_memory); 
+    end
+    
+    always@(*) begin
+        next_inst = inst_memory[inst_addr];
+        end
+        
+     always@(posedge clk) begin
+        if (enable_w) begin
+        inst_memory[inst_addr] <= write_data;
+        end
+        end
+            
+    
+endmodule
