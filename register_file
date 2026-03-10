@@ -1,68 +1,18 @@
-`timescale 1ns / 1ps
-
-//////////////////////////////////////////////////////////////////////////////////
-
-// Company: 
-
-// Engineer: 
-
-// 
-
-// Create Date: 03.11.2025 12:47:10
-
-// Design Name: 
-
-// Module Name: register_file
-
-// Project Name: 
-
-// Target Devices: 
-
-// Tool Versions: 
-
-// Description: 
-
-// 
-
-// Dependencies: 
-
-// 
-
-// Revision:
-
-// Revision 0.01 - File Created
-
-// Additional Comments:
-
-// 
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
 module register_file(
 
     input clk,
     input reset,
  
-    input RegWrite,
-    
-    input [31:0]next_inst, 
-   
-//    input[4:0] rs1_addr,
-//    input[4:0] rs2_addr,
-//    input[4:0] rd_addr,
+    input RegWrite,   
+    input[4:0] rs1_addr,
+    input[4:0] rs2_addr,
+    input[4:0] rd_addr,
     input[31:0] write_reg,
-
+    
     output[31:0] rs1,
     output[31:0] rs2
  );
  
-    wire [4:0]rs1_addr = next_inst[19:15];
-    wire [4:0]rs2_addr = next_inst[24:20];
-    wire [4:0]rd_addr = next_inst[11:7];
     reg[31:0] registers[31:0];
 
     always@(posedge clk or posedge reset) begin
@@ -115,5 +65,6 @@ end
 assign rs1 = registers[rs1_addr];
 
 assign rs2 = registers[rs2_addr];
+
 
 endmodule
