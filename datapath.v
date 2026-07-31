@@ -60,10 +60,10 @@ assign new_inst = secn_mux;
 assign operand_2 = ALU_Src  ? immediate : rs2;
 assign operand_1 = ALU_Src2 ? current_inst : rs1;
 
-assign write_reg = (MemtoReg == 2'b00) ? sum :         // ALU Sonucu
-                   (MemtoReg == 2'b01) ? data_out :    // Bellekten okunan
-                   (MemtoReg == 2'b10) ? inst0 :   // Dönüş adresi (JAL/JALR)
-                   (MemtoReg == 2'b11) ? immediate :     // Doğrudan sayı (LUI)
+        assign write_reg = (MemtoReg == 2'b00) ? sum : // ALU Result
+            (MemtoReg == 2'b01) ? data_out :           // Memory out
+              (MemtoReg == 2'b10) ? inst0 :            // Next instruction address for Jump type instructions
+            (MemtoReg == 2'b11) ? immediate :   
                                          32'b0;
 
 
